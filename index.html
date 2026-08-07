@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#050607" />
+    <title>Inside the Internet — A Cinematic Journey Through the Network</title>
+    <meta
+      name="description"
+      content="A scroll-driven cinematic experience following a signal from silicon to the global network."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Inside the Internet — A Cinematic Journey Through the Network" />
+    <meta
+      property="og:description"
+      content="A scroll-driven cinematic experience following a signal from silicon to the global network."
+    />
+    <meta property="og:image" content="./images/final-earth.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <style>
+      /* First paint, before the bundle arrives: the same black title card the
+         React loader shows, so the screen is never simply empty. */
+      html,
+      body {
+        margin: 0;
+        background: #050607;
+      }
+      .boot {
+        position: fixed;
+        inset: 0;
+        display: grid;
+        align-content: center;
+        justify-items: center;
+        gap: 1.6rem;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+          'Helvetica Neue', Helvetica, Arial, sans-serif;
+      }
+      .boot__mark {
+        margin: 0;
+        font-size: 0.7rem;
+        font-weight: 400;
+        letter-spacing: 0.32em;
+        text-transform: uppercase;
+        color: rgba(243, 240, 232, 0.52);
+      }
+      .boot__track {
+        width: min(52vw, 15rem);
+        height: 1px;
+        background: rgba(243, 240, 232, 0.14);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root">
+      <div class="boot">
+        <p class="boot__mark">Inside the Internet</p>
+        <div class="boot__track"></div>
+      </div>
+    </div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

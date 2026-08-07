@@ -1,0 +1,433 @@
+/* ---------------------------------------------------------------- stage */
+
+.stage {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: var(--ink);
+  opacity: 0.24;
+  will-change: opacity;
+}
+
+.film {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.film--second {
+  opacity: 0;
+}
+
+/* Barely-there scrim: only enough separation for the type to stay legible.
+   Carried by the chapters only — the intro and the finale keep the frame clean. */
+.stage__scrim {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background: linear-gradient(
+    100deg,
+    rgba(5, 6, 7, 0.62) 0%,
+    rgba(5, 6, 7, 0.28) 34%,
+    rgba(5, 6, 7, 0) 64%
+  );
+}
+
+/* Closing card only: the Earth is bright everywhere, so the last two lines
+   need their own ground to sit on. */
+.stage__veil {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background: radial-gradient(
+    ellipse 78% 58% at 50% 52%,
+    rgba(5, 6, 7, 0.66) 0%,
+    rgba(5, 6, 7, 0.38) 46%,
+    rgba(5, 6, 7, 0) 78%
+  );
+}
+
+/* -------------------------------------------------------------- overlay */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.intro {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(90vw, 62rem);
+  translate: -50% -50%;
+  text-align: center;
+  will-change: opacity, transform;
+}
+
+.intro__title {
+  margin: clamp(1.1rem, 2.4vw, 2rem) 0 clamp(1rem, 2vw, 1.6rem);
+  font-size: clamp(2.55rem, 9.4vw, 8.5rem);
+  font-weight: 200;
+  line-height: 0.96;
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+}
+
+.intro__sub {
+  font-size: clamp(0.95rem, 1.35vw, 1.25rem);
+  font-weight: 300;
+  letter-spacing: 0.01em;
+  color: rgba(243, 240, 232, 0.72);
+}
+
+.hint {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(2.2rem, 6vh, 4.5rem);
+  translate: -50% 0;
+  font-size: var(--fs-eyebrow);
+  font-weight: 400;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--muted);
+  white-space: nowrap;
+  background: transparent;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: color 300ms ease;
+}
+
+.hint:hover {
+  color: var(--warm);
+}
+
+.hint__pulse {
+  display: inline-block;
+  animation: breathe 4.2s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* ----------------------------------------------------------------- cues */
+
+.cue {
+  position: absolute;
+  left: var(--edge);
+  bottom: 24vh;
+  width: min(46vw, 38rem);
+  opacity: 0;
+  will-change: opacity, transform;
+}
+
+.cue .eyebrow {
+  margin-bottom: clamp(0.9rem, 1.4vw, 1.4rem);
+}
+
+.cue__line {
+  font-size: clamp(1.9rem, 3.1vw, 3.35rem);
+  font-weight: 200;
+  line-height: 1.16;
+  letter-spacing: -0.005em;
+}
+
+/* --------------------------------------------------------------- finale */
+
+.finale {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(90vw, 60rem);
+  translate: -50% -50%;
+  text-align: center;
+  visibility: hidden;
+}
+
+.finale .eyebrow {
+  opacity: 0;
+  margin-bottom: clamp(2rem, 4.2vw, 3.4rem);
+  color: rgba(243, 240, 232, 0.82);
+  will-change: opacity, transform;
+}
+
+.finale__line {
+  font-size: clamp(1.85rem, 5vw, 4.8rem);
+  font-weight: 200;
+  line-height: 1.1;
+  letter-spacing: -0.005em;
+  opacity: 0;
+  will-change: opacity, transform;
+}
+
+/* --------------------------------------------------------------- chrome */
+
+.rail {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 1px;
+  z-index: 3;
+  background: rgba(243, 240, 232, 0.07);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.rail__fill {
+  position: absolute;
+  inset: 0;
+  background: var(--gold);
+  transform-origin: top center;
+  transform: scaleY(0);
+}
+
+.marker {
+  position: fixed;
+  top: clamp(1.5rem, 4vh, 2.6rem);
+  right: clamp(1.4rem, 3vw, 2.6rem);
+  z-index: 3;
+  width: 2.6em;
+  height: 1em;
+  font-size: var(--fs-eyebrow);
+  font-weight: 400;
+  letter-spacing: var(--track-eyebrow);
+  color: var(--muted);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.marker__value {
+  position: absolute;
+  inset: 0;
+  text-align: right;
+}
+
+.replay {
+  position: fixed;
+  right: var(--edge-tight);
+  bottom: var(--edge-tight);
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.replay__button {
+  padding: 0.85em 1.5em;
+  background: transparent;
+  border: 1px solid rgba(243, 240, 232, 0.16);
+  border-radius: 999px;
+  font-size: var(--fs-eyebrow);
+  font-weight: 400;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--muted);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 420ms ease, border-color 420ms ease, background-color 420ms ease;
+}
+
+.replay__button:hover {
+  color: var(--warm);
+  border-color: rgba(243, 240, 232, 0.4);
+}
+
+.replay__button--copied {
+  color: var(--warm);
+  border-color: var(--gold);
+  background: rgba(201, 183, 154, 0.12);
+}
+
+/* --------------------------------------------------------------- spacer */
+
+.spacer {
+  position: relative;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------- loader */
+
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: clamp(1.4rem, 3vh, 2.2rem);
+  background: var(--ink);
+  transition: opacity 900ms ease;
+}
+
+.loader--done {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.loader__track {
+  width: min(52vw, 15rem);
+  height: 1px;
+  background: var(--faint);
+  overflow: hidden;
+}
+
+.loader__fill {
+  display: block;
+  height: 100%;
+  background: var(--gold);
+  transform-origin: left center;
+  transform: scaleX(0);
+  transition: transform 400ms ease;
+}
+
+/* -------------------------------------------------- reduced-motion route */
+
+.still {
+  display: block;
+}
+
+.still__panel {
+  position: relative;
+  display: grid;
+  align-items: end;
+  min-height: 100vh;
+  padding: clamp(3rem, 12vh, 8rem) var(--edge);
+  overflow: hidden;
+}
+
+.still__panel--intro,
+.still__panel--finale {
+  align-items: center;
+  justify-items: center;
+  text-align: center;
+}
+
+.still__frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.55;
+}
+
+.still__panel--finale .still__frame {
+  opacity: 0.72;
+}
+
+.still__panel::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(5, 6, 7, 0.86) 0%,
+    rgba(5, 6, 7, 0.4) 42%,
+    rgba(5, 6, 7, 0.18) 100%
+  );
+}
+
+.still__text {
+  position: relative;
+  z-index: 1;
+  width: min(46rem, 100%);
+}
+
+.still__text .eyebrow {
+  margin-bottom: clamp(1.2rem, 2.4vw, 2rem);
+}
+
+.still__line {
+  font-size: clamp(1.5rem, 2.6vw, 2.5rem);
+  font-weight: 200;
+  line-height: 1.2;
+  letter-spacing: -0.005em;
+}
+
+.still__line + .still__line {
+  margin-top: clamp(0.7rem, 1.4vw, 1.2rem);
+  color: rgba(243, 240, 232, 0.78);
+}
+
+.still__actions {
+  position: relative;
+  z-index: 2;
+  margin-top: clamp(2rem, 4vh, 3.5rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+}
+
+/* --------------------------------------------------------------- mobile */
+
+@media (max-width: 899px) {
+  .stage__scrim {
+    background: linear-gradient(
+      to top,
+      rgba(5, 6, 7, 0.74) 0%,
+      rgba(5, 6, 7, 0.3) 34%,
+      rgba(5, 6, 7, 0) 60%
+    );
+  }
+
+  .cue {
+    left: var(--edge);
+    right: var(--edge);
+    width: auto;
+    bottom: max(22vh, calc(6rem + env(safe-area-inset-bottom)));
+  }
+
+  .cue__line {
+    font-size: clamp(1.25rem, 5vw, 1.9rem);
+    line-height: 1.24;
+  }
+
+  .intro__title {
+    font-size: clamp(2.35rem, 11.5vw, 4.5rem);
+  }
+
+  .finale__line {
+    font-size: clamp(1.75rem, 7.4vw, 3rem);
+  }
+
+  .replay {
+    right: var(--edge-tight);
+    bottom: max(var(--edge-tight), env(safe-area-inset-bottom));
+    gap: 0.5rem;
+  }
+
+  .replay__button {
+    padding: 0.75em 1.2em;
+    letter-spacing: 0.22em;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hint__pulse {
+    animation: none;
+    opacity: 0.7;
+  }
+
+  * {
+    scroll-behavior: auto !important;
+  }
+}

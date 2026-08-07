@@ -1,0 +1,34 @@
+# Dependencies & build output
+node_modules
+dist
+dist-ssr
+*.local
+.cache
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Source material that is not shipped with the site
+preview/
+
+# Editor / OS
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+Thumbs.db
+
+# Project plans, prompts and agent metadata
+plan.md
+plans.md
+implementation_plan.md
+walkthrough.md
+task.md
+.claude/
+.gemini/
+.agents/
+.gitconfig
+.gitattributes
+
